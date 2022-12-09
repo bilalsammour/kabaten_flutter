@@ -58,6 +58,8 @@
     "user": "User",
     "profile": "Profile",
     "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
     "phoneNumber": "Phone Number",
     "bio": "Bio"
 }

@@ -78,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWrongPassword": MessageLookupByLibrary.simpleMessage(
             "Wrong password provided for that user"),
         "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
+        "female": MessageLookupByLibrary.simpleMessage("Female"),
         "fieldRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
         "forgotYourPassword":
@@ -91,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loggedOut": MessageLookupByLibrary.simpleMessage("Logged Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "male": MessageLookupByLibrary.simpleMessage("Male"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "noItems": MessageLookupByLibrary.simpleMessage("No items to show"),
         "orWith": MessageLookupByLibrary.simpleMessage("Or With"),

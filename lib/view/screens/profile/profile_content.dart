@@ -5,6 +5,7 @@ import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/models/user/user_model.dart';
 import 'package:kabaten/utils/form_validator.dart';
 import 'package:kabaten/view/resources/app_resources.dart';
+import 'package:kabaten/view/screens/profile/gender.dart';
 import 'package:kabaten/view/utils/dialogs_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -24,24 +25,25 @@ class _ProfileContentState extends State<ProfileContent> {
   final _formKey = GlobalKey<FormState>();
 
   final _fullNameController = TextEditingController();
-  final _genderController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _bioController = TextEditingController();
+
+  late String _gender;
 
   @override
   void initState() {
     super.initState();
 
     _fullNameController.text = widget.item.fullName;
-    _genderController.text = widget.item.gender;
     _phoneNumberController.text = widget.item.phoneNumber;
     _bioController.text = widget.item.bio;
+
+    _gender = widget.item.gender;
   }
 
   @override
   void dispose() {
     _fullNameController.dispose();
-    _genderController.dispose();
     _phoneNumberController.dispose();
     _bioController.dispose();
 
@@ -75,14 +77,9 @@ class _ProfileContentState extends State<ProfileContent> {
             validator: FormValidator.person(),
           ),
           const SizedBox(height: AppDimensions.mainSpace),
-          TextFormField(
-            controller: _genderController,
-            textCapitalization: TextCapitalization.words,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              labelText: S.current.gender,
-            ),
-            validator: FormValidator.required(),
+          Gender(
+            initial: widget.item.gender,
+            onChanged: (value) => _gender = value,
           ),
           const SizedBox(height: AppDimensions.mainSpace),
           TextFormField(
@@ -138,7 +135,7 @@ class _ProfileContentState extends State<ProfileContent> {
 
     final newModel = model.copyWith(
       fullName: _fullNameController.text.trim(),
-      gender: _genderController.text,
+      gender: _gender,
       phoneNumber: _phoneNumberController.text.trim(),
       bio: _bioController.text.trim(),
     );
