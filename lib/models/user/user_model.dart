@@ -75,4 +75,15 @@ class UserModel extends MapModel {
   int get hashCode => id.hashCode;
 
   String get title => fullName.isNotEmpty ? fullName : email;
+
+  bool filter(String query) {
+    final plain = query.toLowerCase().trim();
+
+    if (plain.isEmpty) {
+      return true;
+    }
+
+    return fullName.toLowerCase().contains(plain) ||
+        email.toLowerCase().contains(plain);
+  }
 }
