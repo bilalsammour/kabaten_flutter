@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class GenericList extends StatelessWidget {
   final List<dynamic> items;
   final Widget Function(BuildContext context, int index) itemBuilder;
+  final bool endless;
   final Axis scrollDirection;
   final bool shrinkWrap;
   final ScrollController? scrollController;
@@ -15,6 +16,7 @@ class GenericList extends StatelessWidget {
     Key? key,
     required this.items,
     required this.itemBuilder,
+    this.endless = false,
     this.scrollDirection = Axis.vertical,
     this.shrinkWrap = false,
     this.scrollController,
@@ -28,6 +30,7 @@ class GenericList extends StatelessWidget {
       : EndlessList(
           items: items,
           itemBuilder: itemBuilder,
+          endless: endless,
           scrollDirection: scrollDirection,
           shrinkWrap: shrinkWrap,
           physics: physics,

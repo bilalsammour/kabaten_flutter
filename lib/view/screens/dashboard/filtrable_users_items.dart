@@ -37,11 +37,17 @@ class _FiltrableUsersItemsState extends State<FiltrableUsersItems> {
             decoration: InputDecoration(
               labelText: S.current.search,
             ),
-            onChanged: (_) => setState(() {}),
+            onChanged: (value) {
+              if (value.isEmpty) {
+                setState(() {});
+              }
+            },
+            onEditingComplete: () => setState(() {}),
           ),
           Expanded(
             child: UsersItems(
               items: _getFiltrableItems(),
+              endless: _searchController.text.trim().isEmpty,
               onLastItem: widget.onLastItem,
             ),
           ),

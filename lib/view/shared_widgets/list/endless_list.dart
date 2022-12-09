@@ -4,6 +4,7 @@ import 'package:kabaten/view/shared_widgets/center_progress.dart';
 class EndlessList extends StatelessWidget {
   final List<dynamic> items;
   final Widget Function(BuildContext context, int index) itemBuilder;
+  final bool endless;
   final Axis scrollDirection;
   final bool shrinkWrap;
   final ScrollController? scrollController;
@@ -14,6 +15,7 @@ class EndlessList extends StatelessWidget {
     Key? key,
     required this.items,
     required this.itemBuilder,
+    required this.endless,
     this.scrollDirection = Axis.vertical,
     this.shrinkWrap = false,
     this.scrollController,
@@ -23,12 +25,16 @@ class EndlessList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.builder(
-        itemCount: items.length + (items.isEmpty ? 0 : 1),
+        itemCount: items.length + (endless && items.isNotEmpty ? 1 : 0),
         itemBuilder: (context, index) {
           final length = items.length;
 
           if (length == 0) {
             return const SizedBox.shrink();
+          }
+
+          if (!endless) {
+            return itemBuilder.call(context, index);
           }
 
           if (index == length) {
