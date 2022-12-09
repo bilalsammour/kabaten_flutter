@@ -24,9 +24,7 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
     );
   }
 
-  int get pageSize => 25;
-
-  int page = 1;
+  int get pageSize => 20;
 
   Future<List<T>> retrieve({
     List<String> suffix = const [],
@@ -40,7 +38,7 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
     try {
       final results = await _repository.retrieve(
         pageSize: pageSize,
-        page: page,
+        page: _getPage(),
         suffix: suffix,
         parameters: parameters,
       );
@@ -62,6 +60,8 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
       }
     }
   }
+
+  int _getPage() => (items.length ~/ pageSize) + 1;
 
   Future<void> insert({
     required T item,
