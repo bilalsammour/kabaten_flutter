@@ -59,6 +59,9 @@ class GlobalRequest {
       case RequestType.put:
         return _makePutRequest(api);
 
+      case RequestType.patch:
+        return _makePatchRequest(api);
+
       case RequestType.head:
         return _makeHeadRequest(api);
 
@@ -85,6 +88,15 @@ class GlobalRequest {
   Future<Response> _makePutRequest(String api) async {
     final body = jsonEncode(_parameters);
     return http.put(
+      _getUri(api),
+      headers: _headers,
+      body: body,
+    );
+  }
+
+  Future<Response> _makePatchRequest(String api) async {
+    final body = jsonEncode(_parameters);
+    return http.patch(
       _getUri(api),
       headers: _headers,
       body: body,

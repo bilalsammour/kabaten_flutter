@@ -56,5 +56,8 @@
     "createAccount": "Create an account",
     "home": "Home",
     "user": "User",
-    "profile": "Profile"
+    "profile": "Profile",
+    "gender": "Gender",
+    "phoneNumber": "Phone Number",
+    "bio": "Bio"
 }

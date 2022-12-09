@@ -26,17 +26,19 @@ class ItemParentModel extends MapModel {
     };
   }
 
-  factory ItemParentModel.fromMap(Map<String, dynamic> map) {
-    return ItemParentModel(
-      status: (map['status'] ?? '') as String,
-      messageKey: (map['message_key'] ?? '') as String,
-      message: (map['message'] ?? '') as String,
-      data: Map<String, dynamic>.from((map['data'] ??
-          const <Map<String, dynamic>>{}) as Map<String, dynamic>),
-      meta: Map<String, dynamic>.from((map['meta'] ??
-          const <Map<String, dynamic>>{}) as Map<String, dynamic>),
-    );
-  }
+  factory ItemParentModel.fromMap(Map<String, dynamic> map) => ItemParentModel(
+        status: (map['status'] ?? '') as String,
+        messageKey: (map['message_key'] ?? '') as String,
+        message: (map['message'] ?? '') as String,
+        data: Map<String, dynamic>.from(
+          (map['data'] ?? const <Map<String, dynamic>>{})
+              as Map<String, dynamic>,
+        ),
+        meta: Map<String, dynamic>.from(
+          (map['meta'] ?? const <Map<String, dynamic>>{})
+              as Map<String, dynamic>,
+        ),
+      );
 
   T getParsedResults<T>(
     T Function(Map<String, dynamic> map) convertor,

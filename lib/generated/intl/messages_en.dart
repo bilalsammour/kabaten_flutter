@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "answerYes": MessageLookupByLibrary.simpleMessage("Yes"),
         "appName": MessageLookupByLibrary.simpleMessage("Kabaten"),
         "apple": MessageLookupByLibrary.simpleMessage("Apple"),
+        "bio": MessageLookupByLibrary.simpleMessage("Bio"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "createAccount":
@@ -82,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotYourPassword":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "google": MessageLookupByLibrary.simpleMessage("Google"),
         "hidePassword": MessageLookupByLibrary.simpleMessage("Hide password"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -99,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password is required"),
         "passwordValidation": MessageLookupByLibrary.simpleMessage(
             "Password must contain 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special sign: !.#@"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
