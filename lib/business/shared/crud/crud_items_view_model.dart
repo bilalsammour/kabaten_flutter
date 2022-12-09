@@ -26,6 +26,8 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
 
   int get limit => 25;
 
+  int page = 1;
+
   Future<List<T>> retrieve({
     List<String> suffix = const [],
     Map<String, dynamic>? parameters,
@@ -38,6 +40,7 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
     try {
       final results = await _repository.retrieve(
         limit: limit,
+        page: page,
         suffix: suffix,
         parameters: parameters,
       );

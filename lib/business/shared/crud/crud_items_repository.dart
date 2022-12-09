@@ -17,6 +17,7 @@ class CrudItemsRepository<T extends MapModel> extends BaseRepository {
 
   Future<List<T>> retrieve({
     required int limit,
+    required int page,
     required List<String> suffix,
     Map<String, dynamic>? parameters,
   }) async {
@@ -25,6 +26,7 @@ class CrudItemsRepository<T extends MapModel> extends BaseRepository {
     globalRequest.mocked = mocked;
 
     globalRequest.addParameter('limit', limit);
+    globalRequest.addParameter('page', page);
 
     if (parameters != null) {
       globalRequest.addMapParameters(parameters);
