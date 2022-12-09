@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/models/user/user_model.dart';
+import 'package:kabaten/utils/keyboard_manager.dart';
 import 'package:kabaten/view/resources/app_resources.dart';
 import 'package:kabaten/view/screens/dashboard/users_items.dart';
 
@@ -49,14 +50,34 @@ class _FiltrableUsersItemsState extends State<FiltrableUsersItems> {
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           labelText: S.current.search,
+          suffixIcon: IconButton(
+            icon: const Icon(
+              AppIcons.xmark,
+            ),
+            onPressed: () => _onClose(),
+          ),
         ),
         onChanged: (value) {
           if (value.isEmpty) {
             setState(() {});
           }
         },
-        onEditingComplete: () => setState(() {}),
+        onEditingComplete: () => _onSubmitSearch(),
       );
+
+  void _onClose() {
+    _searchController.clear();
+
+    setState(() {});
+
+    KeyboardManager.hideKeyboard(context);
+  }
+
+  void _onSubmitSearch() {
+    setState(() {});
+
+    KeyboardManager.hideKeyboard(context);
+  }
 
   List<UserModel> _getFiltrableItems() => _getFiltrableItemsWithQuery(
         _searchController.text.trim(),
