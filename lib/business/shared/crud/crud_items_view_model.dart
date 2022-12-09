@@ -27,6 +27,7 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
   int get pageSize => 20;
 
   Future<List<T>> retrieve({
+    bool clear = false,
     List<String> suffix = const [],
     Map<String, dynamic>? parameters,
     bool loading = true,
@@ -44,7 +45,9 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
       );
 
       if (results.isNotEmpty) {
-        items.clear();
+        if (clear) {
+          items.clear();
+        }
         items.addAll(results);
         notifyListeners();
       }

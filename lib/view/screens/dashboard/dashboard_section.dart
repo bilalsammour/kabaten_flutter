@@ -13,6 +13,9 @@ class DashboardSection extends StatelessWidget {
       CrudItemsBuilder<UsersViewModel, UserModel>(
         builder: (_, __) => UsersItems(
           items: context.watch<UsersViewModel>().items,
+          onLastItem: () => context.read<UsersViewModel>().retrieve(
+                loading: false,
+              ),
         ),
       );
 }
