@@ -24,6 +24,16 @@ class _LoginContentState extends State<LoginContent> {
   final _passwordController = TextEditingController(text: 'string2@A');
 
   @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(
+      Duration.zero,
+      () => context.read<AuthViewModel>().signOut(),
+    );
+  }
+
+  @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();

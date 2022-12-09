@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
         "google": MessageLookupByLibrary.simpleMessage("Google"),
         "hidePassword": MessageLookupByLibrary.simpleMessage("Hide password"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "locale": MessageLookupByLibrary.simpleMessage("en"),
         "loggedOut": MessageLookupByLibrary.simpleMessage("Logged Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -98,11 +99,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password is required"),
         "passwordValidation": MessageLookupByLibrary.simpleMessage(
             "Password must contain 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special sign: !.#@"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "showPassword": MessageLookupByLibrary.simpleMessage("Show password"),
         "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
-            "Something went wrong, please try again later.")
+            "Something went wrong, please try again later."),
+        "user": MessageLookupByLibrary.simpleMessage("User")
       };
 }

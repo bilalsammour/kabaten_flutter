@@ -53,5 +53,8 @@
     "forgotYourPassword": "Forgot your password?",
     "doNotHaveAccount": "Don’t have an account yet?",
     "alreadyHaveAccount": "Already have an account?",
-    "createAccount": "Create an account"
+    "createAccount": "Create an account",
+    "home": "Home",
+    "user": "User",
+    "profile": "Profile"
 }
