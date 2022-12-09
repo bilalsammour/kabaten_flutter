@@ -4,7 +4,9 @@ import 'package:kabaten/business/shared/view_model_exception.dart';
 import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/models/user/user_model.dart';
 import 'package:kabaten/utils/form_validator.dart';
+import 'package:kabaten/utils/navigation_manager.dart';
 import 'package:kabaten/view/resources/app_resources.dart';
+import 'package:kabaten/view/screens/auth/login/login_screen.dart';
 import 'package:kabaten/view/screens/profile/gender.dart';
 import 'package:kabaten/view/utils/dialogs_manager.dart';
 import 'package:provider/provider.dart';
@@ -167,7 +169,12 @@ class _ProfileContentState extends State<ProfileContent> {
         return;
       }
 
-      await viewModel.delete(id: model.id);
+      await viewModel.delete(id: model.id).then(
+            (_) => NavigationManager.pushClearBack(
+              context,
+              const LoginScreen(),
+            ),
+          );
     } on ViewModelException catch (e) {
       await DialogsManager.showOkDialog(
         context: context,
