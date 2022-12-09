@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/models/user/user_model.dart';
+import 'package:kabaten/view/resources/app_resources.dart';
 import 'package:kabaten/view/screens/dashboard/users_items.dart';
 
 class FiltrableUsersItems extends StatefulWidget {
@@ -31,6 +32,7 @@ class _FiltrableUsersItemsState extends State<FiltrableUsersItems> {
   Widget build(BuildContext context) => Column(
         children: [
           _buildSearch(),
+          const SizedBox(height: AppDimensions.halfSpace),
           Expanded(
             child: UsersItems(
               items: _getFiltrableItems(),
