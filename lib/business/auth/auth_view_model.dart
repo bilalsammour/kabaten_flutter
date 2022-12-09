@@ -37,6 +37,18 @@ class AuthViewModel extends BaseViewModel {
     await _onResult(result);
   }
 
+  Future<void> refreshToken() async {
+    try {
+      await _tryRefreshToken();
+    } catch (_) {}
+  }
+
+  Future<void> _tryRefreshToken() async {
+    final result = await _repository.refreshToken();
+
+    await _onResult(result);
+  }
+
   Future<void> _onResult(GeneralResponse result) async {
     if (processErrors(result)) {
       return;

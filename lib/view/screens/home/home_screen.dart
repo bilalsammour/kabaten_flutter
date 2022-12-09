@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kabaten/business/auth/auth_view_model.dart';
 import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/view/resources/app_resources.dart';
 import 'package:kabaten/view/screens/dashboard/dashboard_section.dart';
 import 'package:kabaten/view/screens/user/user_section.dart';
 import 'package:kabaten/view/shared_widgets/templates/main_template.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,6 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   int _selectedIndex = _initialActiveIndex;
+
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<AuthViewModel>().refreshToken();
+  }
 
   @override
   Widget build(BuildContext context) => MainTemplate(

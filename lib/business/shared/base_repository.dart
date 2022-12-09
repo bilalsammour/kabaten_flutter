@@ -29,4 +29,6 @@ abstract class BaseRepository {
 
   Future<String> _getAuthorization() async =>
       'JWT ${await AuthService.getToken()}';
+
+  Future<String> getRefreshToken() async => await AuthService.getRefreshToken();
 }

@@ -4,6 +4,7 @@ import 'package:kabaten/services/requests/request_all.dart';
 
 class AuthRepository extends BaseRepository {
   static const _api = 'user/login';
+  static const _refreshTokenApi = 'user/refresh';
 
   Future<GeneralResponse> signInWithEmailAndPassword({
     required String username,
@@ -18,6 +19,17 @@ class AuthRepository extends BaseRepository {
       requestType: RequestType.post,
       api: _api,
       ignoring: const [401],
+    );
+  }
+
+  Future<GeneralResponse> refreshToken() async {
+    await init(false);
+
+    final refreshToken = await getRefreshToken();
+
+    return globalRequest.sendRequest(
+      requestType: RequestType.post,
+      api: '$_refreshTokenApi?refresh_token=$refreshToken',
     );
   }
 }
