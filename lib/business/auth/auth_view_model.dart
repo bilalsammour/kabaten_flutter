@@ -51,11 +51,14 @@ class AuthViewModel extends BaseViewModel {
         );
 
     if (token.accessToken.isNotEmpty) {
-      await _storeToken(token.accessToken);
+      await _storeToken(token: token);
     }
   }
 
-  Future<void> _storeToken(String token) => AuthService.storeToken(token);
+  Future<void> _storeToken({required TokenModel token}) async {
+    await AuthService.storeToken(token.accessToken);
+    await AuthService.storeRefreshToken(token.refreshToken);
+  }
 
   Future<void> signOut() async {
     try {
