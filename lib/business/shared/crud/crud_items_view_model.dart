@@ -24,7 +24,7 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
     );
   }
 
-  int get limit => 25;
+  int get pageSize => 25;
 
   int page = 1;
 
@@ -39,7 +39,7 @@ abstract class CrudItemsViewModel<T extends MapModel> extends BaseViewModel {
 
     try {
       final results = await _repository.retrieve(
-        limit: limit,
+        pageSize: pageSize,
         page: page,
         suffix: suffix,
         parameters: parameters,

@@ -3,6 +3,7 @@ import 'package:kabaten/models/map_model.dart';
 class UserModel extends MapModel {
   final String id;
   final String fullName;
+  final String email;
   final String gender;
   final String phoneNumber;
   final String bio;
@@ -11,6 +12,7 @@ class UserModel extends MapModel {
   const UserModel({
     this.id = '',
     this.fullName = '',
+    this.email = '',
     this.gender = '',
     this.phoneNumber = '',
     this.bio = '',
@@ -20,6 +22,7 @@ class UserModel extends MapModel {
   UserModel copyWith({
     String? id,
     String? fullName,
+    String? email,
     String? gender,
     String? phoneNumber,
     String? bio,
@@ -28,6 +31,7 @@ class UserModel extends MapModel {
     return UserModel(
       id: id ?? this.id,
       fullName: fullName ?? this.fullName,
+      email: email ?? this.email,
       gender: gender ?? this.gender,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       bio: bio ?? this.bio,
@@ -39,6 +43,7 @@ class UserModel extends MapModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'full_name': fullName,
+      'email': email,
       'gender': gender,
       'phone_number': phoneNumber,
       'bio': bio,
@@ -49,6 +54,7 @@ class UserModel extends MapModel {
     return UserModel(
       id: (map['id'] ?? '') as String,
       fullName: (map['full_name'] ?? '') as String,
+      email: (map['email'] ?? '') as String,
       gender: (map['gender'] ?? '') as String,
       phoneNumber: (map['phone_number'] ?? '') as String,
       bio: (map['bio'] ?? '') as String,
@@ -66,7 +72,7 @@ class UserModel extends MapModel {
   }
 
   @override
-  int get hashCode {
-    return id.hashCode;
-  }
+  int get hashCode => id.hashCode;
+
+  String get title => fullName.isNotEmpty ? fullName : email;
 }

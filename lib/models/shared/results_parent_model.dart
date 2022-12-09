@@ -22,8 +22,8 @@ class ResultsParentModel extends MapModel {
       messageKey: (map['message_key'] ?? '') as String,
       message: (map['message'] ?? '') as String,
       data: List<Map<String, dynamic>>.from(
-        (map['data'] as List<Map<String, dynamic>>).map<Map<String, dynamic>>(
-          (x) => x,
+        (map['data'] as List<dynamic>).map(
+          (e) => e as Map<String, dynamic>,
         ),
       ),
       meta: ResultsMetaModel.fromMap(map['meta'] as Map<String, dynamic>),
