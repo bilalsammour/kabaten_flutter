@@ -12,7 +12,7 @@ class UsersItems extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => GenericList<UserModel>(
+  Widget build(BuildContext context) => GenericList(
         items: items,
         itemBuilder: (_, index) => UserItem(item: items[index]),
       );

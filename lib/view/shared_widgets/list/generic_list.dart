@@ -1,13 +1,13 @@
 import 'package:kabaten/view/shared_widgets/no_items.dart';
 import 'package:flutter/material.dart';
 
-class GenericList<T> extends StatelessWidget {
-  final List<T> items;
+class GenericList extends StatelessWidget {
+  final List<dynamic> items;
   final IndexedWidgetBuilder itemBuilder;
   final Axis scrollDirection;
   final bool shrinkWrap;
   final ScrollController? scrollController;
-  final ScrollPhysics? scrollPhysics;
+  final ScrollPhysics? physics;
 
   const GenericList({
     Key? key,
@@ -16,7 +16,7 @@ class GenericList<T> extends StatelessWidget {
     this.scrollDirection = Axis.vertical,
     this.shrinkWrap = false,
     this.scrollController,
-    this.scrollPhysics,
+    this.physics,
   }) : super(key: key);
 
   @override
@@ -28,6 +28,6 @@ class GenericList<T> extends StatelessWidget {
           scrollDirection: scrollDirection,
           controller: scrollController,
           shrinkWrap: shrinkWrap,
-          physics: scrollPhysics,
+          physics: physics,
         );
 }
