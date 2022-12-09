@@ -30,20 +30,7 @@ class _FiltrableUsersItemsState extends State<FiltrableUsersItems> {
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          TextField(
-            controller: _searchController,
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.search,
-            decoration: InputDecoration(
-              labelText: S.current.search,
-            ),
-            onChanged: (value) {
-              if (value.isEmpty) {
-                setState(() {});
-              }
-            },
-            onEditingComplete: () => setState(() {}),
-          ),
+          _buildSearch(),
           Expanded(
             child: UsersItems(
               items: _getFiltrableItems(),
@@ -52,6 +39,21 @@ class _FiltrableUsersItemsState extends State<FiltrableUsersItems> {
             ),
           ),
         ],
+      );
+
+  Widget _buildSearch() => TextField(
+        controller: _searchController,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.search,
+        decoration: InputDecoration(
+          labelText: S.current.search,
+        ),
+        onChanged: (value) {
+          if (value.isEmpty) {
+            setState(() {});
+          }
+        },
+        onEditingComplete: () => setState(() {}),
       );
 
   List<UserModel> _getFiltrableItems() => _getFiltrableItemsWithQuery(
