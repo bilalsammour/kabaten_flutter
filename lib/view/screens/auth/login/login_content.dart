@@ -21,8 +21,8 @@ class LoginContent extends StatefulWidget {
 class _LoginContentState extends State<LoginContent> {
   final _formKey = GlobalKey<FormState>();
 
-  final _usernameController = TextEditingController(text: 'test@yst9.com');
-  final _passwordController = TextEditingController(text: 'string2@A');
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void initState() {
