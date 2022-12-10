@@ -1,4 +1,5 @@
 import 'package:kabaten/business/shared/view_model_exception.dart';
+import 'package:kabaten/view/screens/auth/verification/verification_screen.dart';
 import 'package:kabaten/view/shared_widgets/app_consumer.dart';
 import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/utils/form_validator.dart';
@@ -144,11 +145,20 @@ class _RegistrationContentState extends State<RegistrationContent> {
     }
   }
 
-  Future<void> _trySubmit() =>
-      context.read<AuthViewModel>().signUpWithEmailAndPassword(
+  Future<void> _trySubmit() => context
+          .read<AuthViewModel>()
+          .signUpWithEmailAndPassword(
             username: _usernameController.text,
             password: _passwordController.text,
+          )
+          .then(
+        (_) async {
+          await NavigationManager.pushClearBack(
+            context,
+            const VerificationScreen(),
           );
+        },
+      );
 
   Widget _buildSecondaryLabel() => Center(
         child: Text(

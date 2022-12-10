@@ -6,6 +6,7 @@ class AuthRepository extends BaseRepository {
   static const _api = 'user/login';
   static const _signUpApi = 'user';
   static const _refreshTokenApi = 'user/refresh';
+  static const _verifyApi = 'user/verify';
 
   Future<GeneralResponse> signInWithEmailAndPassword({
     required String username,
@@ -47,6 +48,17 @@ class AuthRepository extends BaseRepository {
     return globalRequest.sendRequest(
       requestType: RequestType.post,
       api: '$_refreshTokenApi?refresh_token=$refreshToken',
+    );
+  }
+
+  Future<GeneralResponse> verify({required String activationCode}) async {
+    await init(true);
+
+    return (globalRequest..addParameter('activation_code', activationCode))
+        .sendRequest(
+      requestType: RequestType.post,
+      api: _verifyApi,
+      ignoring: const [401],
     );
   }
 }

@@ -78,6 +78,21 @@ class AuthViewModel extends BaseViewModel {
     await _onResult(result);
   }
 
+  Future<void> verify({required String activationCode}) async {
+    changeBusy(true);
+
+    try {
+      await _tryVerify(activationCode: activationCode);
+    } catch (_) {
+    } finally {
+      changeBusy(false);
+    }
+  }
+
+  Future<void> _tryVerify({required String activationCode}) async {
+    await _repository.verify(activationCode: activationCode);
+  }
+
   Future<void> _onResult(GeneralResponse result) async {
     if (processErrors(result)) {
       return;

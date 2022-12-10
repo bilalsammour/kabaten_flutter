@@ -22,6 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "activate": MessageLookupByLibrary.simpleMessage("Activate"),
+        "activateYourAccount":
+            MessageLookupByLibrary.simpleMessage("Activate your account"),
+        "activationCode":
+            MessageLookupByLibrary.simpleMessage("Activation Code"),
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "all": MessageLookupByLibrary.simpleMessage("ALL"),
         "alreadyHaveAccount":
@@ -30,7 +35,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "answerOk": MessageLookupByLibrary.simpleMessage("OK"),
         "answerYes": MessageLookupByLibrary.simpleMessage("Yes"),
         "appName": MessageLookupByLibrary.simpleMessage("Kabaten"),
-        "apple": MessageLookupByLibrary.simpleMessage("Apple"),
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
@@ -77,7 +81,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "The password provided is too weak"),
         "errorWrongPassword": MessageLookupByLibrary.simpleMessage(
             "Wrong password provided for that user"),
-        "facebook": MessageLookupByLibrary.simpleMessage("Facebook"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "fieldRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
@@ -85,7 +88,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
-        "google": MessageLookupByLibrary.simpleMessage("Google"),
         "hidePassword": MessageLookupByLibrary.simpleMessage("Hide password"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "locale": MessageLookupByLibrary.simpleMessage("en"),
@@ -95,7 +97,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "noItems": MessageLookupByLibrary.simpleMessage("No items to show"),
-        "orWith": MessageLookupByLibrary.simpleMessage("Or With"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordConfirmation":
             MessageLookupByLibrary.simpleMessage("Password confirmation"),

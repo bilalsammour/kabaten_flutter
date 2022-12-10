@@ -430,46 +430,6 @@ class S {
     );
   }
 
-  /// `Or With`
-  String get orWith {
-    return Intl.message(
-      'Or With',
-      name: 'orWith',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Apple`
-  String get apple {
-    return Intl.message(
-      'Apple',
-      name: 'apple',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Google`
-  String get google {
-    return Intl.message(
-      'Google',
-      name: 'google',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Facebook`
-  String get facebook {
-    return Intl.message(
-      'Facebook',
-      name: 'facebook',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Logout`
   String get logout {
     return Intl.message(
@@ -495,6 +455,36 @@ class S {
     return Intl.message(
       'Register',
       name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate your account`
+  String get activateYourAccount {
+    return Intl.message(
+      'Activate your account',
+      name: 'activateYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate`
+  String get activate {
+    return Intl.message(
+      'Activate',
+      name: 'activate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activation Code`
+  String get activationCode {
+    return Intl.message(
+      'Activation Code',
+      name: 'activationCode',
       desc: '',
       args: [],
     );
