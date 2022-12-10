@@ -4,10 +4,9 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:kabaten/app/configurations.dart';
-import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/models/shared/general_response.dart';
-import 'package:kabaten/services/auth/auth_service.dart';
 import 'package:kabaten/services/requests/request_all.dart';
+import 'package:kabaten/services/requests/request_exception.dart';
 
 class GlobalRequest {
   final Map<String, String> _headers = {};
@@ -23,13 +22,8 @@ class GlobalRequest {
     try {
       final response = await _makeRequest(requestType, api);
 
-      final statusCheckResult = await _checkStatusCode(
-        statusCode: response.statusCode,
-        ignoring: ignoring,
-      );
-
-      if (statusCheckResult != null) {
-        return statusCheckResult;
+      if (response.statusCode < 200 || response.statusCode > 299) {
+        throw RequestException(code: response.statusCode);
       }
 
       final map = convert.jsonDecode(response.body) as Map<String, dynamic>;
@@ -108,19 +102,6 @@ class GlobalRequest {
 
   Future<Response> _makeDeleteRequest(String api) =>
       http.delete(_getUriWithParameters(api), headers: _headers);
-
-  Future<GeneralResponse?> _checkStatusCode({
-    required int statusCode,
-    required List<int> ignoring,
-  }) async {
-    if (statusCode == 401 && !ignoring.contains(401)) {
-      AuthService.forceLogout();
-
-      return GeneralResponse.error(S.current.loggedOut);
-    }
-
-    return null;
-  }
 
   void addHeader(String key, String value) => _headers[key] = value;
 
