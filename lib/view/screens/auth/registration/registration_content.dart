@@ -1,43 +1,34 @@
-import 'package:kabaten/business/auth/auth_view_model.dart';
 import 'package:kabaten/business/shared/view_model_exception.dart';
+import 'package:kabaten/view/shared_widgets/app_consumer.dart';
 import 'package:kabaten/generated/l10n.dart';
 import 'package:kabaten/utils/form_validator.dart';
 import 'package:kabaten/utils/navigation_manager.dart';
 import 'package:kabaten/view/resources/app_resources.dart';
-import 'package:kabaten/view/screens/auth/registration/registration_screen.dart';
-import 'package:kabaten/view/screens/home/home_screen.dart';
-import 'package:kabaten/view/shared_widgets/app_consumer.dart';
-import 'package:kabaten/view/utils/dialogs_manager.dart';
+import 'package:kabaten/view/screens/auth/login/login_screen.dart';
+import 'package:kabaten/business/auth/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:kabaten/view/utils/dialogs_manager.dart';
 
-class LoginContent extends StatefulWidget {
-  const LoginContent({Key? key}) : super(key: key);
+class RegistrationContent extends StatefulWidget {
+  const RegistrationContent({Key? key}) : super(key: key);
 
   @override
-  State<LoginContent> createState() => _LoginContentState();
+  State<RegistrationContent> createState() => _RegistrationContentState();
 }
 
-class _LoginContentState extends State<LoginContent> {
+class _RegistrationContentState extends State<RegistrationContent> {
   final _formKey = GlobalKey<FormState>();
 
-  final _usernameController = TextEditingController(text: 'test@yst9.com');
-  final _passwordController = TextEditingController(text: 'string2@A');
-
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(
-      Duration.zero,
-      () => context.read<AuthViewModel>().signOut(),
-    );
-  }
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordConfirmationController = TextEditingController();
 
   @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
+    _passwordConfirmationController.dispose();
 
     super.dispose();
   }
@@ -67,22 +58,23 @@ class _LoginContentState extends State<LoginContent> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildTitle(),
-          const SizedBox(height: AppDimensions.mainSpace),
+          const SizedBox(height: AppDimensions.doubleMainSpace),
           _buildEmail(),
           const SizedBox(height: AppDimensions.doubleMainSpace),
           _buildPassword(),
-          const SizedBox(height: AppDimensions.quarterSpace),
-          _buildForgotPassword(),
+          const SizedBox(height: AppDimensions.doubleMainSpace),
+          _buildPasswordConfirmation(),
           const SizedBox(height: AppDimensions.doubleMainSpace),
           _buildSubmit(),
           const SizedBox(height: AppDimensions.doubleMainSpace),
-          _buildSecondary(),
+          _buildSecondaryLabel(),
+          _buildSecondaryButton(),
         ],
       );
 
   Widget _buildTitle() => Center(
         child: Text(
-          S.current.login,
+          S.current.register,
           style: AppStyles.h1Bold(context),
         ),
       );
@@ -108,19 +100,22 @@ class _LoginContentState extends State<LoginContent> {
         validator: FormValidator.password(),
       );
 
-  Widget _buildForgotPassword() => TextButton(
-      child: Text(
-        S.current.forgotYourPassword,
-        style: AppStyles.p1Bold(context).copyWith(
-          color: AppColors.plainOn,
+  Widget _buildPasswordConfirmation() => TextFormField(
+        controller: _passwordConfirmationController,
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+          labelText: S.current.passwordConfirmation,
         ),
-      ),
-      onPressed: () {});
+        validator: FormValidator.passwordConfirmation(
+          controller: _passwordController,
+        ),
+      );
 
   Widget _buildSubmit() => ElevatedButton(
         onPressed: () => _submit(),
         child: Text(
-          S.current.login,
+          S.current.register,
         ),
       );
 
@@ -136,11 +131,6 @@ class _LoginContentState extends State<LoginContent> {
         context: context,
         message: e.error ?? '',
       );
-    } catch (_) {
-      await DialogsManager.showOkDialog(
-        context: context,
-        message: S.current.errorSystem,
-      );
     }
   }
 
@@ -154,29 +144,15 @@ class _LoginContentState extends State<LoginContent> {
     }
   }
 
-  Future<void> _trySubmit() => context
-          .read<AuthViewModel>()
-          .signInWithEmailAndPassword(
+  Future<void> _trySubmit() =>
+      context.read<AuthViewModel>().signUpWithEmailAndPassword(
             username: _usernameController.text,
             password: _passwordController.text,
-          )
-          .then((_) async {
-        await NavigationManager.pushClearBack(
-          context,
-          const HomeScreen(),
-        );
-      });
-
-  Widget _buildSecondary() => Column(
-        children: [
-          _buildSecondaryLabel(),
-          _buildSecondaryButton(),
-        ],
-      );
+          );
 
   Widget _buildSecondaryLabel() => Center(
         child: Text(
-          S.current.doNotHaveAccount,
+          S.current.alreadyHaveAccount,
           style: AppStyles.p2(context),
         ),
       );
@@ -184,17 +160,12 @@ class _LoginContentState extends State<LoginContent> {
   Widget _buildSecondaryButton() => TextButton(
         onPressed: () => _navigateToMe(),
         child: Text(
-          S.current.createAccount,
-          style: AppStyles.p1Bold(context).copyWith(
-            color: AppColors.plainOn,
-          ),
+          S.current.login,
         ),
       );
 
-  Future _navigateToMe() async {
-    await NavigationManager.pushClearBack(
-      context,
-      const RegistrationScreen(),
-    );
-  }
+  Future _navigateToMe() => NavigationManager.pushClearBack(
+        context,
+        const LoginScreen(),
+      );
 }

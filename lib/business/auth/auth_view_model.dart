@@ -37,6 +37,35 @@ class AuthViewModel extends BaseViewModel {
     await _onResult(result);
   }
 
+  Future<void> signUpWithEmailAndPassword({
+    required String username,
+    required String password,
+  }) async {
+    changeBusy(true);
+
+    try {
+      await _trySignUpWithEmailAndPassword(
+        username: username,
+        password: password,
+      );
+    } catch (_) {
+    } finally {
+      changeBusy(false);
+    }
+  }
+
+  Future<void> _trySignUpWithEmailAndPassword({
+    required String username,
+    required String password,
+  }) async {
+    final result = await _repository.signUpWithEmailAndPassword(
+      username: username,
+      password: password,
+    );
+
+    await _onResult(result);
+  }
+
   Future<void> refreshToken() async {
     try {
       await _tryRefreshToken();

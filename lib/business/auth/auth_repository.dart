@@ -4,6 +4,7 @@ import 'package:kabaten/services/requests/request_all.dart';
 
 class AuthRepository extends BaseRepository {
   static const _api = 'user/login';
+  static const _signUpApi = 'user';
   static const _refreshTokenApi = 'user/refresh';
 
   Future<GeneralResponse> signInWithEmailAndPassword({
@@ -18,6 +19,22 @@ class AuthRepository extends BaseRepository {
         .sendRequest(
       requestType: RequestType.post,
       api: _api,
+      ignoring: const [401],
+    );
+  }
+
+  Future<GeneralResponse> signUpWithEmailAndPassword({
+    required String username,
+    required String password,
+  }) async {
+    await init(false);
+
+    return (globalRequest
+          ..addParameter('email', username)
+          ..addParameter('password', password))
+        .sendRequest(
+      requestType: RequestType.post,
+      api: _signUpApi,
       ignoring: const [401],
     );
   }
