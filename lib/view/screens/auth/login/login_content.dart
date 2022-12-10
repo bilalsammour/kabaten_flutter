@@ -71,8 +71,6 @@ class _LoginContentState extends State<LoginContent> {
           _buildEmail(),
           const SizedBox(height: AppDimensions.doubleMainSpace),
           _buildPassword(),
-          const SizedBox(height: AppDimensions.quarterSpace),
-          _buildForgotPassword(),
           const SizedBox(height: AppDimensions.doubleMainSpace),
           _buildSubmit(),
           const SizedBox(height: AppDimensions.doubleMainSpace),
@@ -107,15 +105,6 @@ class _LoginContentState extends State<LoginContent> {
         ),
         validator: FormValidator.password(),
       );
-
-  Widget _buildForgotPassword() => TextButton(
-      child: Text(
-        S.current.forgotYourPassword,
-        style: AppStyles.p1Bold(context).copyWith(
-          color: AppColors.plainOn,
-        ),
-      ),
-      onPressed: () {});
 
   Widget _buildSubmit() => ElevatedButton(
         onPressed: () => _submit(),
